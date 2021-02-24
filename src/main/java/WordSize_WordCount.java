@@ -64,23 +64,18 @@ public class WordSize_WordCount {
                 throws IOException, InterruptedException {
 
 
-            //Converting the record (single line) to String and storing it in a String variable line
+
             String line = value.toString();
 
-            //StringTokenizer is breaking the record (line) into words
             StringTokenizer tokenizer = new StringTokenizer(line);
 
-            //iterating through all the words available in that line and forming the key value pair	
             while (tokenizer.hasMoreTokens()) {
 
                 String thisH = tokenizer.nextToken();
 
-                //finding the length of each token(word)
                 count= new IntWritable(thisH.length());
                 word.set(thisH);
 
-                //Sending to output collector which inturn passes the same to reducer
-                //So in this case the output from mapper will be the length of a word and that word
                 context.write(count,word);
             }
         }
